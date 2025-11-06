@@ -14,17 +14,22 @@ public class PlayerController : MonoBehaviour
     //This part of the code will have all Public and Private variables
     private Vector3 direction;
     private Rigidbody rb;
+    //I forgot what this does but is important for respawning
+    public Vector3 respawnPos;
 
+    private float DeathLevel = -3f;
     public float speed = 10f;
     public float jump = 7f;
     public float fall = 7f;
     public int fallAmount = 1;
     public float floorCheckDist = 1.1f;
+    public int health = 99;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        respawnPos = transform.position;
     }
 
     // Update is called once per frame
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
         PlayerJump();
+        Death();
     }
 
     
@@ -51,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
             //sets the rotation value to a fixed value
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
@@ -90,5 +95,19 @@ public class PlayerController : MonoBehaviour
         }
         return isGrounded;
     }
-
+    public void Respawn()
+    {
+        transform.position = respawnPos;
+    }
+    private void Death()
+    {
+        if (health <= 0)
+        {
+            Respawn();
+        }
+        if (transform.position.y < DeathLevel)
+        {
+            Respawn();
+        }
+    }
 }
