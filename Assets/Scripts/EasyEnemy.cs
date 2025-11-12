@@ -10,10 +10,10 @@ using UnityEngine;
  */
 public class EasyEnemy : MonoBehaviour
 {
+    public int EasyHealth = 1;
     public Transform leftPoint;
     public Transform rightPoint;
     public float speed = 10;
-
     private Vector3 direction;
     private Vector3 startLeftPos;
     private Vector3 startRightPos;
@@ -44,5 +44,15 @@ public class EasyEnemy : MonoBehaviour
             direction = Vector3.left;
         }
     }//MUST MAKE SURE THE LEFT AND RIGHT HAVE DIFFERENT GREATER/LESS THAN SYMBOLS
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Bullet>())
+        {
+            EasyHealth--;
+            if(EasyHealth <= 0)
+            {
+                Destroy(other.gameObject);
+            }
+        }
+    }
 }

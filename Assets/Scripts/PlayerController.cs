@@ -15,17 +15,21 @@ public class PlayerController : MonoBehaviour
     //This part of the code will have all Public and Private variables
     private Vector3 direction;
     private Rigidbody rb;
+    private float DeathLevel = -3f;
 
     //I forgot what this does but is important for respawning
     public Vector3 respawnPos;
 
-    private float DeathLevel = -3f;
+    public GameObject BulletPrefab;
+
     public float speed = 10f;
     public float jump = 7f;
     public float fall = 7f;
     public int fallAmount = 1;
     public float floorCheckDist = 1.1f;
     public int health = 99;
+    public int SetHealth = 99;
+    public int BulletSpeed = 15;
 
 
 
@@ -42,6 +46,7 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
         PlayerJump();
         Death();
+        BulletMovememt();
     }
 
     
@@ -68,6 +73,14 @@ public class PlayerController : MonoBehaviour
             rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
+        }
+    }
+    //this is what makes the bullet spawn and fly in the direction the player is lookin
+    private void BulletMovememt()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Instantiate(BulletPrefab, transform.position, transform.rotation);
         }
     }
     /// <summary>
@@ -99,6 +112,7 @@ public class PlayerController : MonoBehaviour
         }
         return isGrounded;
     }
+    //This will allow the player to respawn and if touched a flag will respawn at last touched flag
     public void Respawn()
     {
         transform.position = respawnPos;
@@ -108,17 +122,24 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             Respawn();
+            health = SetHealth;
         }
         if (transform.position.y < DeathLevel)
         {
             Respawn();
+            health = SetHealth;
         }
     }
+    //this will 
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<EasyEnemy>())
         {
-            other.GetComponent<PlayerController>().health-- 15;
+            health = health - 15;
+        }
+        if (other.GetComponent<HardEnemy>())
+        {
+            health = health - 35;
         }
     }
 }
