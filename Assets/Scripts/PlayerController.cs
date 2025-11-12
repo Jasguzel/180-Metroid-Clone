@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     //This part of the code will have all Public and Private variables
     private Vector3 direction;
     private Rigidbody rb;
+
     //I forgot what this does but is important for respawning
     public Vector3 respawnPos;
 
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public int fallAmount = 1;
     public float floorCheckDist = 1.1f;
     public int health = 99;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -108,6 +112,13 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < DeathLevel)
         {
             Respawn();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<EasyEnemy>())
+        {
+            other.GetComponent<PlayerController>().health-- 15;
         }
     }
 }
