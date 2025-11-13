@@ -48,11 +48,11 @@ public class EasyEnemy : MonoBehaviour
     {
         if (other.GetComponent<Bullet>())
         {
-            EasyHealth--;
-            if(EasyHealth <= 0)
-            {
-                Destroy(other.gameObject);
-            }
+            EasyHealth -= other.GetComponent<Bullet>().bulletDamage;
+        }
+        if (EasyHealth <= 0)
+        {
+            Destroy(other.gameObject);
         }
     }
 }

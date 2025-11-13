@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 /*
@@ -15,12 +16,13 @@ public class PlayerController : MonoBehaviour
     //This part of the code will have all Public and Private variables
     private Vector3 direction;
     private Rigidbody rb;
-    private float DeathLevel = -3f;
+    private float deathLevel = -3f;
 
     //I forgot what this does but is important for respawning
     public Vector3 respawnPos;
 
     public GameObject BulletPrefab;
+    public GameObject FirePos;
 
     public float speed = 10f;
     public float jump = 7f;
@@ -28,8 +30,7 @@ public class PlayerController : MonoBehaviour
     public int fallAmount = 1;
     public float floorCheckDist = 1.1f;
     public int health = 99;
-    public int SetHealth = 99;
-    public int BulletSpeed = 15;
+    public int setHealth = 99;
 
 
 
@@ -78,10 +79,19 @@ public class PlayerController : MonoBehaviour
     //this is what makes the bullet spawn and fly in the direction the player is lookin
     private void BulletMovememt()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && direction == Vector3.right)
         {
-            Instantiate(BulletPrefab, transform.position, transform.rotation);
+            //this creates the bullet by setting the bullet to newBullet
+            GameObject newBullet = Instantiate(BulletPrefab, transform.position, Quaternion.Euler(0, 0, -90));
+            //this line grabs the new variable newBullet and says hey which direction are you going? Make sure direction is public in bullet script
+            newBullet.GetComponent<Bullet>().direction = Vector3.right;
         }
+        if (Input.GetKeyDown(KeyCode.E) && direction == Vector3.left)
+        {
+            GameObject newBullet = Instantiate(BulletPrefab, transform.position, Quaternion.Euler(0, 0, 90));
+            newBullet.GetComponent<Bullet>().direction = Vector3.left;
+        }
+
     }
     /// <summary>
     /// this will allow the player to jump up and if they want go down quicker
@@ -122,12 +132,12 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             Respawn();
-            health = SetHealth;
+            health = setHealth;
         }
-        if (transform.position.y < DeathLevel)
+        if (transform.position.y < deathLevel)
         {
             Respawn();
-            health = SetHealth;
+            health = setHealth;
         }
     }
     //this will 
