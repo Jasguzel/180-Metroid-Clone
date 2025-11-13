@@ -35,6 +35,7 @@ public class HardEnemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //this will make the hard enemy turn left or right depending on where you are in a 15 block line radius
     private void HardMovement()
     {
         RaycastHit hit;
