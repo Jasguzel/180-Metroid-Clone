@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+/*
+ * Jasmine Guzeldere
+ * 11/12/2025
+ * Manages UI in the levels
+ */
 public class UIManager : MonoBehaviour
 {
     public PlayerController playerController;

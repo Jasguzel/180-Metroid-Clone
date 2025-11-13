@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Guzeldere, Jasmine
+ * 11/12/2025
+ * Manages the starting screen/mainmenu
+ */
 public class StartScreen : MonoBehaviour
 {
     /// <summary>
@@ -15,7 +20,8 @@ public class StartScreen : MonoBehaviour
     /// <summary>
     /// Changes the current scene to the scene with a matching index
     /// </summary>
-    /// <param name="sceneIndex">The Index of the scene to switch to</param>
+    /// <param name="sceneI
+    /// ndex">The Index of the scene to switch to</param>
     public void SwitchScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);

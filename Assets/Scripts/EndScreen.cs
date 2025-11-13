@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Guzeldere, Jasmine
+ * 11/12/2025
+ * Manages the end screen
+ */
 public class EndScreen : MonoBehaviour
 {
     /// <summary>
