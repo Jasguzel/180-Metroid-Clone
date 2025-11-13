@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aedad9d8f17b7e4c887600bcc6d1223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EasyHealth: 35
+  EasyHealth: 1
   leftPoint: {fileID: 4643372987654230092}
   rightPoint: {fileID: 4161349029399525280}
   speed: 8

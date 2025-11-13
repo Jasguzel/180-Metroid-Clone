@@ -52,7 +52,7 @@ public class EasyEnemy : MonoBehaviour
         }
         if (EasyHealth <= 0)
         {
-            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
 }
