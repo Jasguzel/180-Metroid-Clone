@@ -217,12 +217,10 @@ MonoBehaviour:
   BulletPrefab: {fileID: 0}
   FirePos: {fileID: 0}
   speed: 14
-  jump: 7
   fall: 7
   fallAmount: 1
   floorCheckDist: 1.1
   health: 99
-  setHealth: 99
 --- !u!1 &9107430075560614562
 GameObject:
   m_ObjectHideFlags: 0
