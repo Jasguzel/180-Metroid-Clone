@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
             //this line grabs the new variable newBullet and says hey which direction are you going? Make sure direction is public in bullet script
             newBullet.GetComponent<Bullet>().direction = Vector3.right;
         }
-        if (Input.GetKeyDown(KeyCode.E) && direction == Vector3.left)
+        if (Input.GetKeyDown(KeyCode.Q) && direction == Vector3.left)
         {
             GameObject newBullet = Instantiate(BulletPrefab, transform.position, Quaternion.Euler(0, 0, 90));
             newBullet.GetComponent<Bullet>().direction = Vector3.left;
