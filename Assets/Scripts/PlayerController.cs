@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         PlayerJump();
         Death();
         BulletMovememt();
+        
     }
 
     
@@ -140,9 +141,9 @@ public class PlayerController : MonoBehaviour
             health = setHealth;
         }
     }
-    private void AmountOfHealth()
+    private void DamageTaken()
     {
-
+        StartCoroutine(Blink());
     }
     //this will 
     private void OnTriggerEnter(Collider other)
@@ -150,10 +151,12 @@ public class PlayerController : MonoBehaviour
         if (other.GetComponent<EasyEnemy>())
         {
             health = health - 15;
+            DamageTaken();
         }
         if (other.GetComponent<HardEnemy>())
         {
             health = health - 35;
+            DamageTaken();
         }
         if (other.GetComponent<Bandage>())
         {
@@ -177,6 +180,7 @@ public class PlayerController : MonoBehaviour
             {
                 GetComponent<MeshRenderer>().enabled = true;
             }
+            yield return new WaitForSeconds(.1f);
         }
         GetComponent<MeshRenderer>().enabled = true;
     }
