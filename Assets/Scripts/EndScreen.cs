@@ -1,13 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
-public class UIManager : MonoBehaviour
+public class EndScreen : MonoBehaviour
 {
-    public PlayerController playerController;
-    public TMP_Text playerHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +13,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHealth.text = "Health Remaining: " + playerController.health + "/99";
+        
     }
 }
