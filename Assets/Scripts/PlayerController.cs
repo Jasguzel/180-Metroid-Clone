@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 direction;
     private Rigidbody rb;
     private float deathLevel = -3f;
+    private int setHealth = 99;
+    private float jump = 7f;
 
     //I forgot what this does but is important for respawning
     public Vector3 respawnPos;
@@ -25,12 +27,10 @@ public class PlayerController : MonoBehaviour
     public GameObject FirePos;
 
     public float speed = 10f;
-    public float jump = 7f;
     public float fall = 7f;
     public int fallAmount = 1;
     public float floorCheckDist = 1.1f;
     public int health = 99;
-    public int setHealth = 99;
 
 
 
@@ -140,6 +140,10 @@ public class PlayerController : MonoBehaviour
             health = setHealth;
         }
     }
+    private void AmountOfHealth()
+    {
+
+    }
     //this will 
     private void OnTriggerEnter(Collider other)
     {
@@ -151,5 +155,29 @@ public class PlayerController : MonoBehaviour
         {
             health = health - 35;
         }
+        if (other.GetComponent<Bandage>())
+        {
+            setHealth = 199;
+            health = setHealth;
+        }
+        if (other.GetComponent<JumpBoost>())
+        {
+            jump = jump +3;
+        }
+    }
+    public IEnumerator Blink()
+    {
+        for (int index = 0; index < 6; index++)
+        {
+            if (index % 2 == 0)
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+            }
+            if (index % 2 == 0)
+            {
+                GetComponent<MeshRenderer>().enabled = true;
+            }
+        }
+        GetComponent<MeshRenderer>().enabled = true;
     }
 }
